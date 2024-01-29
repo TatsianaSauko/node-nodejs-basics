@@ -10,8 +10,7 @@ const rename = async () => {
     const wrongFilePath = path.join(__dirname, 'files', 'wrongFilename.txt');
     try {
         await fs.access(properFilePath);
-        console.error('FS operation failed: properFilename.md already exists');
-        return;
+        throw new Error('FS operation failed: properFilename.md already exists');
     } catch (error) {
         if (error.code !== 'ENOENT') {
             throw error;
@@ -21,8 +20,7 @@ const rename = async () => {
         await fs.access(wrongFilePath);
     } catch (error) {
         if (error.code === 'ENOENT') {
-            console.error('FS operation failed: wrongFilename.txt does not exist');
-            return;
+            throw new Error('FS operation failed: wrongFilename.txt does not exist');
         } else {
             throw error;
         }
