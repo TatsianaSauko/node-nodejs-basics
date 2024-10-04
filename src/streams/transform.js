@@ -2,7 +2,7 @@ import { Transform } from 'stream';
 
 const transform = async () => {
     const reverseText = new Transform({
-        transform(chunk, callback) {
+        transform(chunk, encoding, callback) {
             this.push(chunk.toString().split('').reverse().join(''));
             callback();
         }
