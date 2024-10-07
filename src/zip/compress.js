@@ -4,10 +4,9 @@ import path from 'path';
 import zlib  from 'zlib';
 import { pipeline }  from 'stream/promises';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const compress = async () => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     const filePathFileToCompress = path.join(__dirname, 'files', 'fileToCompress.txt');
     const filePathArchive = path.join(__dirname, 'files', 'archive.gz');
     await pipeline(
